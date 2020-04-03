@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CLN_EMPLOYEES" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="Cleanse calculation view for employees"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="EMPLOYEES">
+    <resourceUri>EMPLOYEES</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="SRC_EMPLOYEES">
+    <viewAttributes>
+      <viewAttribute id="EMPLOYEE_ID"/>
+      <viewAttribute id="NAME_FIRST"/>
+      <viewAttribute id="NAME_LAST"/>
+      <viewAttribute id="SEX"/>
+      <viewAttribute id="ADDRESS_ID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="EMPLOYEES"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="SRC_EMPLOYEES">
+  <attributes>
+    <attribute id="EMPLOYEE_ID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EMPLOYEE_ID"/>
+      <keyMapping columnObjectName="SRC_EMPLOYEES" columnName="EMPLOYEE_ID"/>
+    </attribute>
+    <attribute id="NAME_FIRST" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NAME_FIRST"/>
+      <keyMapping columnObjectName="SRC_EMPLOYEES" columnName="NAME_FIRST"/>
+    </attribute>
+    <attribute id="NAME_LAST" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NAME_LAST"/>
+      <keyMapping columnObjectName="SRC_EMPLOYEES" columnName="NAME_LAST"/>
+    </attribute>
+    <attribute id="SEX" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SEX"/>
+      <keyMapping columnObjectName="SRC_EMPLOYEES" columnName="SEX"/>
+    </attribute>
+    <attribute id="ADDRESS_ID" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ADDRESS_ID"/>
+      <keyMapping columnObjectName="SRC_EMPLOYEES" columnName="ADDRESS_ID"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="SRC_EMPLOYEES" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="192"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="TRN_FACT_SALES" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="Combine sales items and headers"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="CLN_SALES_ORDERS">
+    <resourceUri>CLN_SALES_ORDERS</resourceUri>
+  </DataSource>
+  <DataSource id="CLN_SALES_ORDER_ITEMS">
+    <resourceUri>CLN_SALES_ORDER_ITEMS</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="SRC_TRN_SALES_ORDERS">
+    <viewAttributes>
+      <viewAttribute id="SALES_ORDER_ID"/>
+      <viewAttribute id="FISC_VARIANT"/>
+      <viewAttribute id="FISCAL_YEAR_PERIOD"/>
+      <viewAttribute id="PARTNER_ID"/>
+      <viewAttribute id="SALES_ORG"/>
+      <viewAttribute id="TOT_CURRENCY"/>
+      <viewAttribute id="TOT_GROSS_AMOUNT"/>
+      <viewAttribute id="TOT_NET_AMOUNT"/>
+      <viewAttribute id="TOT_TAX_AMOUNT"/>
+    
+      <viewAttribute id="SALES_ORDER_CREATED_BY"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="CLN_SALES_ORDERS"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="SRC_TRN_SALES_ORDER_ITEMS">
+    <viewAttributes>
+      <viewAttribute id="SALES_ORDER_ID"/>
+      <viewAttribute id="SALES_ORDER_ITEM"/>
+      <viewAttribute id="PRODUCT_ID"/>
+      <viewAttribute id="ITM_CURRENCY"/>
+      <viewAttribute id="ITM_GROSS_AMOUNT"/>
+      <viewAttribute id="ITM_NET_AMOUNT"/>
+      <viewAttribute id="ITM_TAX_AMOUNT"/>
+      <viewAttribute id="QUANTITY"/>
+      <viewAttribute id="QUANTITY_UNIT"/>
+      <viewAttribute id="DELIVERY_DATE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="CLN_SALES_ORDER_ITEMS"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_1" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="SALES_ORDER_ID"/>
+      <viewAttribute id="FISC_VARIANT"/>
+      <viewAttribute id="FISCAL_YEAR_PERIOD"/>
+      <viewAttribute id="PARTNER_ID"/>
+      <viewAttribute id="SALES_ORG"/>
+      <viewAttribute id="TOT_CURRENCY"/>
+      <viewAttribute id="TOT_GROSS_AMOUNT"/>
+      <viewAttribute id="TOT_NET_AMOUNT"/>
+      <viewAttribute id="TOT_TAX_AMOUNT"/>
+      <viewAttribute id="SALES_ORDER_CREATED_BY"/>
+      <viewAttribute id="SALES_ORDER_ITEM"/>
+      <viewAttribute id="PRODUCT_ID"/>
+      <viewAttribute id="ITM_CURRENCY"/>
+      <viewAttribute id="ITM_GROSS_AMOUNT"/>
+      <viewAttribute id="ITM_NET_AMOUNT"/>
+      <viewAttribute id="ITM_TAX_AMOUNT"/>
+      <viewAttribute id="QUANTITY"/>
+      <viewAttribute id="QUANTITY_UNIT"/>
+      <viewAttribute id="DELIVERY_DATE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="SRC_TRN_SALES_ORDERS">
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALES_ORDER_ID" source="SALES_ORDER_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FISC_VARIANT" source="FISC_VARIANT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FISCAL_YEAR_PERIOD" source="FISCAL_YEAR_PERIOD"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PARTNER_ID" source="PARTNER_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALES_ORG" source="SALES_ORG"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TOT_CURRENCY" source="TOT_CURRENCY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TOT_GROSS_AMOUNT" source="TOT_GROSS_AMOUNT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TOT_NET_AMOUNT" source="TOT_NET_AMOUNT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TOT_TAX_AMOUNT" source="TOT_TAX_AMOUNT"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALES_ORDER_CREATED_BY" source="SALES_ORDER_CREATED_BY"/>
+    </input>
+    <input node="SRC_TRN_SALES_ORDER_ITEMS">
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALES_ORDER_ITEM" source="SALES_ORDER_ITEM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCT_ID" source="PRODUCT_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ITM_CURRENCY" source="ITM_CURRENCY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ITM_GROSS_AMOUNT" source="ITM_GROSS_AMOUNT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ITM_NET_AMOUNT" source="ITM_NET_AMOUNT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ITM_TAX_AMOUNT" source="ITM_TAX_AMOUNT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="QUANTITY" source="QUANTITY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="QUANTITY_UNIT" source="QUANTITY_UNIT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DELIVERY_DATE" source="DELIVERY_DATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALES_ORDER_ID" source="SALES_ORDER_ID"/>
+    </input>
+    <joinAttribute name="SALES_ORDER_ID"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="SALES_ORDER_ID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SALES_ORDER_ID"/>
+      <keyMapping columnObjectName="Join_1" columnName="SALES_ORDER_ID"/>
+    </attribute>
+    <attribute id="FISC_VARIANT" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FISC_VARIANT"/>
+      <keyMapping columnObjectName="Join_1" columnName="FISC_VARIANT"/>
+    </attribute>
+    <attribute id="FISCAL_YEAR_PERIOD" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FISCAL_YEAR_PERIOD"/>
+      <keyMapping columnObjectName="Join_1" columnName="FISCAL_YEAR_PERIOD"/>
+    </attribute>
+    <attribute id="PARTNER_ID" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PARTNER_ID"/>
+      <keyMapping columnObjectName="Join_1" columnName="PARTNER_ID"/>
+    </attribute>
+    <attribute id="SALES_ORG" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SALES_ORG"/>
+      <keyMapping columnObjectName="Join_1" columnName="SALES_ORG"/>
+    </attribute>
+    <attribute id="TOT_CURRENCY" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TOT_CURRENCY"/>
+      <keyMapping columnObjectName="Join_1" columnName="TOT_CURRENCY"/>
+    </attribute>
+    <attribute id="TOT_GROSS_AMOUNT" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TOT_GROSS_AMOUNT"/>
+      <keyMapping columnObjectName="Join_1" columnName="TOT_GROSS_AMOUNT"/>
+    </attribute>
+    <attribute id="TOT_NET_AMOUNT" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TOT_NET_AMOUNT"/>
+      <keyMapping columnObjectName="Join_1" columnName="TOT_NET_AMOUNT"/>
+    </attribute>
+    <attribute id="TOT_TAX_AMOUNT" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TOT_TAX_AMOUNT"/>
+      <keyMapping columnObjectName="Join_1" columnName="TOT_TAX_AMOUNT"/>
+    </attribute>
+    <attribute id="SALES_ORDER_CREATED_BY" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CREATED_BY"/>
+      <keyMapping columnObjectName="Join_1" columnName="SALES_ORDER_CREATED_BY"/>
+    </attribute>
+    <attribute id="SALES_ORDER_ITEM" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SALES_ORDER_ITEM"/>
+      <keyMapping columnObjectName="Join_1" columnName="SALES_ORDER_ITEM"/>
+    </attribute>
+    <attribute id="PRODUCT_ID" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PRODUCT_ID"/>
+      <keyMapping columnObjectName="Join_1" columnName="PRODUCT_ID"/>
+    </attribute>
+    <attribute id="ITM_CURRENCY" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ITM_CURRENCY"/>
+      <keyMapping columnObjectName="Join_1" columnName="ITM_CURRENCY"/>
+    </attribute>
+    <attribute id="ITM_GROSS_AMOUNT" order="14" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ITM_GROSS_AMOUNT"/>
+      <keyMapping columnObjectName="Join_1" columnName="ITM_GROSS_AMOUNT"/>
+    </attribute>
+    <attribute id="ITM_NET_AMOUNT" order="15" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ITM_NET_AMOUNT"/>
+      <keyMapping columnObjectName="Join_1" columnName="ITM_NET_AMOUNT"/>
+    </attribute>
+    <attribute id="ITM_TAX_AMOUNT" order="16" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ITM_TAX_AMOUNT"/>
+      <keyMapping columnObjectName="Join_1" columnName="ITM_TAX_AMOUNT"/>
+    </attribute>
+    <attribute id="QUANTITY" order="17" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="QUANTITY"/>
+      <keyMapping columnObjectName="Join_1" columnName="QUANTITY"/>
+    </attribute>
+    <attribute id="QUANTITY_UNIT" order="18" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="QUANTITY_UNIT"/>
+      <keyMapping columnObjectName="Join_1" columnName="QUANTITY_UNIT"/>
+    </attribute>
+    <attribute id="DELIVERY_DATE" order="19" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DELIVERY_DATE"/>
+      <keyMapping columnObjectName="Join_1" columnName="DELIVERY_DATE"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="312.55168759296924" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="SRC_TRN_SALES_ORDERS" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="91.99999999999994" y="376.9999988079071"/>
+      <rectangleSize height="30" width="222"/>
+    </shape>
+    <shape expanded="true" modelObjectName="SRC_TRN_SALES_ORDER_ITEMS" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="364" y="376.9999988079071"/>
+      <rectangleSize height="30" width="258"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="312.55168759296924" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="SRC_TRN_SALES_ORDERS" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="28" y="24"/>
+      <rectangleSize width="225"/>
+    </shape>
+    <shape modelObjectName="SRC_TRN_SALES_ORDER_ITEMS" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="260"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

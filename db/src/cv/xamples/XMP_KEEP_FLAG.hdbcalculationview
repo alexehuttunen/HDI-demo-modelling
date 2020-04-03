@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="XMP_KEEP_FLAG" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="Examples of KEEP FLAG usage"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="CLN_SALES_ORDER_ITEMS">
+    <resourceUri>CLN_SALES_ORDER_ITEMS</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:AggregationView" id="SRC_SALES_ORDER_ITEMS">
+    <viewAttributes>
+      <viewAttribute id="SALES_ORDER_ID"/>
+      <viewAttribute id="SALES_ORDER_ITEM"/>
+      <viewAttribute id="ITM_GROSS_AMOUNT" aggregationType="sum"/>
+      <viewAttribute id="QUANTITY" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="CLN_SALES_ORDER_ITEMS"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="SRC_SALES_ORDER_ITEMS">
+  <attributes>
+    <attribute id="SALES_ORDER_ID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SALES_ORDER_ID"/>
+      <keyMapping columnObjectName="SRC_SALES_ORDER_ITEMS" columnName="SALES_ORDER_ID"/>
+    </attribute>
+    <attribute id="SALES_ORDER_ITEM" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SALES_ORDER_ITEM"/>
+      <keyMapping columnObjectName="SRC_SALES_ORDER_ITEMS" columnName="SALES_ORDER_ITEM"/>
+    </attribute>
+    <attribute id="ITM_GROSS_AMOUNT" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ITM_GROSS_AMOUNT"/>
+      <keyMapping columnObjectName="SRC_SALES_ORDER_ITEMS" columnName="ITM_GROSS_AMOUNT"/>
+    </attribute>
+    <attribute id="QUANTITY" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="QUANTITY"/>
+      <keyMapping columnObjectName="SRC_SALES_ORDER_ITEMS" columnName="QUANTITY"/>
+    </attribute></attributes>
+  <calculatedAttributes>
+    <calculatedAttribute id="LINE_ITEM_TOTAL" order="5" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <keyCalculation datatype="DECIMAL" expressionLanguage="SQL" length="13" scale="2">
+        <formula>&quot;ITM_GROSS_AMOUNT&quot; * &quot;QUANTITY&quot;</formula>
+      </keyCalculation>
+    </calculatedAttribute>
+  </calculatedAttributes>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="134" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="SRC_SALES_ORDER_ITEMS" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="236"/>
+      <rectangleSize height="30" width="238"/>
+    </shape></shapes>
+</layout>
+</Calculation:scenario>

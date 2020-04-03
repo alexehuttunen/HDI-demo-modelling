@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CLN_BUSINESS_PARTNER" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="Cleanse calculation view for Business Partner"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="BUSINESS_PARTNERS">
+    <resourceUri>BUSINESS_PARTNERS</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="SRC_BUSINESS_PARTNER">
+    <viewAttributes>
+      <viewAttribute id="PARTNER_ID"/>
+      <viewAttribute id="ADDRESS_ID"/>
+      <viewAttribute id="COMPANY_NAME"/>
+      <viewAttribute id="LEGAL_FORM"/>
+      <viewAttribute id="PARTNER_ROLE"/>
+      <viewAttribute id="BP_CURRENCY"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="BUSINESS_PARTNERS">
+      <mapping xsi:type="Calculation:AttributeMapping" target="BP_CURRENCY" source="CURRENCY"/>
+    </input>
+  </calculationView>
+</calculationViews>
+<logicalModel id="SRC_BUSINESS_PARTNER">
+  <attributes>
+    <attribute id="PARTNER_ID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PARTNER_ID"/>
+      <keyMapping columnObjectName="SRC_BUSINESS_PARTNER" columnName="PARTNER_ID"/>
+    </attribute>
+    <attribute id="ADDRESS_ID" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ADDRESS_ID"/>
+      <keyMapping columnObjectName="SRC_BUSINESS_PARTNER" columnName="ADDRESS_ID"/>
+    </attribute>
+    <attribute id="COMPANY_NAME" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="COMPANY_NAME"/>
+      <keyMapping columnObjectName="SRC_BUSINESS_PARTNER" columnName="COMPANY_NAME"/>
+    </attribute>
+    <attribute id="LEGAL_FORM" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LEGAL_FORM"/>
+      <keyMapping columnObjectName="SRC_BUSINESS_PARTNER" columnName="LEGAL_FORM"/>
+    </attribute>
+    <attribute id="PARTNER_ROLE" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PARTNER_ROLE"/>
+      <keyMapping columnObjectName="SRC_BUSINESS_PARTNER" columnName="PARTNER_ROLE"/>
+    </attribute>
+    <attribute id="BP_CURRENCY" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CURRENCY"/>
+      <keyMapping columnObjectName="SRC_BUSINESS_PARTNER" columnName="BP_CURRENCY"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="127.80576849681383" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="SRC_BUSINESS_PARTNER" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="91.99999999999997" y="236.9999988079071"/>
+      <rectangleSize height="30" width="225"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

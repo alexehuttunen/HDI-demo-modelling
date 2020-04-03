@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CLN_PROD_TEXT_EN" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="Cleanse CV for PRODUCT_TEXT - filters for EN records only"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="PRODUCT_TEXTS">
+    <resourceUri>PRODUCT_TEXTS</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="SRC_PROD_TEXT" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="PRODUCT_ID"/>
+      <viewAttribute id="LANGUAGE"/>
+      <viewAttribute id="SHORT_DESCR"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="PRODUCT_TEXTS"/>
+    <filter>&quot;LANGUAGE&quot;='EN'</filter>
+  </calculationView>
+</calculationViews>
+<logicalModel id="SRC_PROD_TEXT">
+  <attributes>
+    <attribute id="PRODUCT_ID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PRODUCT_ID"/>
+      <keyMapping columnObjectName="SRC_PROD_TEXT" columnName="PRODUCT_ID"/>
+    </attribute>
+    <attribute id="SHORT_DESCR" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SHORT_DESCR"/>
+      <keyMapping columnObjectName="SRC_PROD_TEXT" columnName="SHORT_DESCR"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="SRC_PROD_TEXT" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="199"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

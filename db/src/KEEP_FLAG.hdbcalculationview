@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="KEEP_FLAG" applyPrivilegeType="NONE" dataCategory="DIMENSION" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="KEEP_FLAG"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="CLN_SALES_ORDER_ITEMS">
+    <resourceUri>CLN_SALES_ORDER_ITEMS</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="SALES_ORDER_ID"/>
+      <viewAttribute id="SALES_ORDER_ITEM"/>
+      <viewAttribute id="ITM_GROSS_AMOUNT"/>
+      <viewAttribute id="QUANTITY"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="CLN_SALES_ORDER_ITEMS"/>
+    <filter>&quot;SALES_ORDER_ID&quot;='0500000001'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:AggregationView" id="Aggregation_1">
+    <viewAttributes>
+      <viewAttribute id="SALES_ORDER_ID"/>
+      <viewAttribute id="ITM_GROSS_AMOUNT" aggregationType="sum"/>
+      <viewAttribute id="QUANTITY" aggregationType="sum"/>
+      <viewAttribute keepFlag="true" id="SALES_ORDER_ITEM"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="Projection_1"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Aggregation_1">
+  <attributes>
+    <attribute id="SALES_ORDER_ID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SALES_ORDER_ID"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="SALES_ORDER_ID"/>
+    </attribute>
+    <attribute id="ITM_GROSS_AMOUNT" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="GROSS_AMOUNT"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="ITM_GROSS_AMOUNT"/>
+    </attribute>
+    <attribute id="QUANTITY" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="QUANTITY"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="QUANTITY"/>
+    </attribute>
+    <attribute id="SALES_ORDER_ITEM" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SALES_ORDER_ITEM"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="SALES_ORDER_ITEM"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes>
+    <calculatedAttribute id="TOTAL" order="5" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <keyCalculation datatype="DECIMAL" expressionLanguage="SQL" length="13" scale="2">
+        <formula>&quot;ITM_GROSS_AMOUNT&quot;*&quot;QUANTITY&quot;</formula>
+      </keyCalculation>
+    </calculatedAttribute>
+  </calculatedAttributes>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/></logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="92" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="322"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Aggregation_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

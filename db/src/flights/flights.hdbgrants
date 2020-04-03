@@ -1,0 +1,14 @@
+{
+	"FLIGHTS_UPS": {
+		"object_owner": { 
+			"roles": [
+				"FLIGHTS_EXTERNAL_ACCESS_G"
+			]
+		},
+		"application_user": {
+			"roles": [
+				"FLIGHTS_EXTERNAL_ACCESS"
+			]
+		}
+	}
+}

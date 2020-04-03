@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="TRN_DIM_EMPLOYEE" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="Combine Employee and address details"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="CLN_EMPLOYEES">
+    <resourceUri>CLN_EMPLOYEES</resourceUri>
+  </DataSource>
+  <DataSource id="CLN_ADDRESSES">
+    <resourceUri>CLN_ADDRESSES</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="SRC_CLN_EMPLOYEES">
+    <viewAttributes>
+      <viewAttribute id="EMPLOYEE_ID"/>
+      <viewAttribute id="NAME_FIRST"/>
+      <viewAttribute id="NAME_LAST"/>
+      <viewAttribute id="SEX"/>
+      <viewAttribute id="ADDRESS_ID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="CLN_EMPLOYEES"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="SRC_CLN_ADDRESSES">
+    <viewAttributes>
+      <viewAttribute id="ADDRESS_ID"/>
+      <viewAttribute id="REGION"/>
+      <viewAttribute id="COUNTRY"/>
+      <viewAttribute id="CITY"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="CLN_ADDRESSES"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_1" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="EMPLOYEE_ID"/>
+      <viewAttribute id="NAME_FIRST"/>
+      <viewAttribute id="NAME_LAST"/>
+      <viewAttribute id="SEX"/>
+      <viewAttribute id="EMP_REGION"/>
+      <viewAttribute id="EMP_COUNTRY"/>
+      <viewAttribute id="EMP_CITY"/>
+      <viewAttribute hidden="true" id="JOIN$ADDRESS_ID$ADDRESS_ID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="SRC_CLN_EMPLOYEES">
+      <mapping xsi:type="Calculation:AttributeMapping" target="EMPLOYEE_ID" source="EMPLOYEE_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NAME_FIRST" source="NAME_FIRST"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NAME_LAST" source="NAME_LAST"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SEX" source="SEX"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ADDRESS_ID$ADDRESS_ID" source="ADDRESS_ID"/>
+    </input>
+    <input node="SRC_CLN_ADDRESSES">
+      <mapping xsi:type="Calculation:AttributeMapping" target="EMP_REGION" source="REGION"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EMP_COUNTRY" source="COUNTRY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EMP_CITY" source="CITY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ADDRESS_ID$ADDRESS_ID" source="ADDRESS_ID"/>
+    </input>
+    <joinAttribute name="JOIN$ADDRESS_ID$ADDRESS_ID"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="EMPLOYEE_ID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EMPLOYEE_ID"/>
+      <keyMapping columnObjectName="Join_1" columnName="EMPLOYEE_ID"/>
+    </attribute>
+    <attribute id="NAME_FIRST" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NAME_FIRST"/>
+      <keyMapping columnObjectName="Join_1" columnName="NAME_FIRST"/>
+    </attribute>
+    <attribute id="NAME_LAST" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NAME_LAST"/>
+      <keyMapping columnObjectName="Join_1" columnName="NAME_LAST"/>
+    </attribute>
+    <attribute id="SEX" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SEX"/>
+      <keyMapping columnObjectName="Join_1" columnName="SEX"/>
+    </attribute>
+    <attribute id="EMP_REGION" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="REGION"/>
+      <keyMapping columnObjectName="Join_1" columnName="EMP_REGION"/>
+    </attribute>
+    <attribute id="EMP_COUNTRY" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="COUNTRY"/>
+      <keyMapping columnObjectName="Join_1" columnName="EMP_COUNTRY"/>
+    </attribute>
+    <attribute id="EMP_CITY" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CITY"/>
+      <keyMapping columnObjectName="Join_1" columnName="EMP_CITY"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="SRC_CLN_EMPLOYEES" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-97" y="307"/>
+      <rectangleSize height="30" width="199"/>
+    </shape>
+    <shape expanded="true" modelObjectName="SRC_CLN_ADDRESSES" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="260" y="281"/>
+      <rectangleSize height="30" width="195"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="174"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="SRC_CLN_EMPLOYEES" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="202.029296875"/>
+    </shape>
+    <shape modelObjectName="SRC_CLN_ADDRESSES" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="202.029296875"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

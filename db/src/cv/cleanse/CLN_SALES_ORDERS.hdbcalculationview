@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CLN_SALES_ORDERS" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="Cleanse calculation view for Sales Orders"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="SALES_ORDERS">
+    <resourceUri>SALES_ORDERS</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="SRC_SALES_ORDERS">
+    <viewAttributes>
+      <viewAttribute id="SALES_ORDER_ID"/>
+      <viewAttribute id="FISC_VARIANT"/>
+      <viewAttribute id="FISCAL_YEAR_PERIOD"/>
+      <viewAttribute id="PARTNER_ID"/>
+      <viewAttribute id="SALES_ORG"/>
+      <viewAttribute id="TOT_CURRENCY"/>
+      <viewAttribute id="TOT_GROSS_AMOUNT"/>
+      <viewAttribute id="TOT_NET_AMOUNT"/>
+      <viewAttribute id="TAX_AMOUNT"/>
+    
+      <viewAttribute id="SALES_ORDER_CREATED_BY"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="SALES_ORDERS">
+      <mapping xsi:type="Calculation:AttributeMapping" target="TOT_CURRENCY" source="CURRENCY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TOT_GROSS_AMOUNT" source="GROSS_AMOUNT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TOT_NET_AMOUNT" source="NET_AMOUNT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALES_ORDER_CREATED_BY" source="CREATED_BY"/>
+    </input>
+  </calculationView>
+</calculationViews>
+<logicalModel id="SRC_SALES_ORDERS">
+  <attributes>
+    <attribute id="SALES_ORDER_ID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SALES_ORDER_ID"/>
+      <keyMapping columnObjectName="SRC_SALES_ORDERS" columnName="SALES_ORDER_ID"/>
+    </attribute>
+    <attribute id="FISC_VARIANT" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FISC_VARIANT"/>
+      <keyMapping columnObjectName="SRC_SALES_ORDERS" columnName="FISC_VARIANT"/>
+    </attribute>
+    <attribute id="FISCAL_YEAR_PERIOD" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FISCAL_YEAR_PERIOD"/>
+      <keyMapping columnObjectName="SRC_SALES_ORDERS" columnName="FISCAL_YEAR_PERIOD"/>
+    </attribute>
+    <attribute id="PARTNER_ID" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PARTNER_ID"/>
+      <keyMapping columnObjectName="SRC_SALES_ORDERS" columnName="PARTNER_ID"/>
+    </attribute>
+    <attribute id="SALES_ORG" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SALES_ORG"/>
+      <keyMapping columnObjectName="SRC_SALES_ORDERS" columnName="SALES_ORG"/>
+    </attribute>
+    <attribute id="TOT_CURRENCY" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TOT_CURRENCY"/>
+      <keyMapping columnObjectName="SRC_SALES_ORDERS" columnName="TOT_CURRENCY"/>
+    </attribute>
+    <attribute id="TOT_GROSS_AMOUNT" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TOT_GROSS_AMOUNT"/>
+      <keyMapping columnObjectName="SRC_SALES_ORDERS" columnName="TOT_GROSS_AMOUNT"/>
+    </attribute>
+    <attribute id="TOT_NET_AMOUNT" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TOT_NET_AMOUNT"/>
+      <keyMapping columnObjectName="SRC_SALES_ORDERS" columnName="TOT_NET_AMOUNT"/>
+    </attribute>
+    <attribute id="TOT_TAX_AMOUNT" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TOT_TAX_AMOUNT"/>
+      <keyMapping columnObjectName="SRC_SALES_ORDERS" columnName="TAX_AMOUNT"/>
+    </attribute>
+  
+    <attribute id="SALES_ORDER_CREATED_BY" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CREATED_BY"/>
+      <keyMapping columnObjectName="SRC_SALES_ORDERS" columnName="SALES_ORDER_CREATED_BY"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="102" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="SRC_SALES_ORDERS" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="217"/>
+      <rectangleSize height="30" width="181"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

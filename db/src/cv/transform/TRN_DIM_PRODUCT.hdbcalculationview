@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="TRN_DIM_PRODUCT" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="Combines product attributes"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="CLN_PRODUCT">
+    <resourceUri>CLN_PRODUCT</resourceUri>
+  </DataSource>
+  <DataSource id="CLN_PROD_TEXT_EN">
+    <resourceUri>CLN_PROD_TEXT_EN</resourceUri>
+  </DataSource>
+  <DataSource id="CLN_PROD_CAT_TEXT_EN">
+    <resourceUri>CLN_PROD_CAT_TEXT_EN</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="SRC_CLN_PRODUCT">
+    <viewAttributes>
+      <viewAttribute id="PRODUCT_ID"/>
+      <viewAttribute id="TYPE_CODE"/>
+      <viewAttribute id="PROD_CATEGORY_ID"/>
+      <viewAttribute id="QUANTITY_UNIT"/>
+      <viewAttribute id="CURRENCY"/>
+      <viewAttribute id="PRICE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="CLN_PRODUCT"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="SRC_CLN_PROD_TEXT_EN">
+    <viewAttributes>
+      <viewAttribute id="PRODUCT_ID"/>
+      <viewAttribute id="SHORT_DESCR"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="CLN_PROD_TEXT_EN"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="SRC_CLN_PROD_CAT_TEXT_EN">
+    <viewAttributes>
+      <viewAttribute id="PROD_CATEGORY_ID"/>
+      <viewAttribute id="SHORT_DESCR"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="CLN_PROD_CAT_TEXT_EN"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="INC_PROD_DESC" cardinality="CN_1" joinType="inner" optimizeJoinColumns="false">
+    <viewAttributes>
+      <viewAttribute id="PRODUCT_ID"/>
+      <viewAttribute id="TYPE_CODE"/>
+      <viewAttribute id="PROD_CATEGORY_ID"/>
+      <viewAttribute id="QUANTITY_UNIT"/>
+      <viewAttribute id="CURRENCY"/>
+      <viewAttribute id="PRICE"/>
+      <viewAttribute id="PRODUCT_DESC_EN"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="SRC_CLN_PRODUCT">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCT_ID" source="PRODUCT_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TYPE_CODE" source="TYPE_CODE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PROD_CATEGORY_ID" source="PROD_CATEGORY_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="QUANTITY_UNIT" source="QUANTITY_UNIT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CURRENCY" source="CURRENCY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRICE" source="PRICE"/>
+    </input>
+    <input node="SRC_CLN_PROD_TEXT_EN">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCT_DESC_EN" source="SHORT_DESCR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCT_ID" source="PRODUCT_ID"/>
+    </input>
+    <joinAttribute name="PRODUCT_ID"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="INC_PROD_CAT" cardinality="CN_1" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="PRODUCT_ID"/>
+      <viewAttribute id="TYPE_CODE"/>
+      <viewAttribute id="PROD_CATEGORY_ID"/>
+      <viewAttribute id="QUANTITY_UNIT"/>
+      <viewAttribute id="CURRENCY"/>
+      <viewAttribute id="PRICE"/>
+      <viewAttribute id="PRODUCT_DESC_EN"/>
+      <viewAttribute id="PROD_CAT_DESC_EN"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="INC_PROD_DESC">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCT_ID" source="PRODUCT_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TYPE_CODE" source="TYPE_CODE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PROD_CATEGORY_ID" source="PROD_CATEGORY_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="QUANTITY_UNIT" source="QUANTITY_UNIT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CURRENCY" source="CURRENCY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRICE" source="PRICE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCT_DESC_EN" source="PRODUCT_DESC_EN"/>
+    </input>
+    <input node="SRC_CLN_PROD_CAT_TEXT_EN">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PROD_CAT_DESC_EN" source="SHORT_DESCR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PROD_CATEGORY_ID" source="PROD_CATEGORY_ID"/>
+    </input>
+    <joinAttribute name="PROD_CATEGORY_ID"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="INC_PROD_CAT">
+  <attributes>
+    <attribute id="PRODUCT_ID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PRODUCT_ID"/>
+      <keyMapping columnObjectName="INC_PROD_CAT" columnName="PRODUCT_ID"/>
+    </attribute>
+    <attribute id="TYPE_CODE" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TYPE_CODE"/>
+      <keyMapping columnObjectName="INC_PROD_CAT" columnName="TYPE_CODE"/>
+    </attribute>
+    <attribute id="PROD_CATEGORY_ID" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PROD_CATEGORY_ID"/>
+      <keyMapping columnObjectName="INC_PROD_CAT" columnName="PROD_CATEGORY_ID"/>
+    </attribute>
+    <attribute id="QUANTITY_UNIT" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="QUANTITY_UNIT"/>
+      <keyMapping columnObjectName="INC_PROD_CAT" columnName="QUANTITY_UNIT"/>
+    </attribute>
+    <attribute id="CURRENCY" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CURRENCY"/>
+      <keyMapping columnObjectName="INC_PROD_CAT" columnName="CURRENCY"/>
+    </attribute>
+    <attribute id="PRICE" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PRICE"/>
+      <keyMapping columnObjectName="INC_PROD_CAT" columnName="PRICE"/>
+    </attribute>
+    <attribute id="PRODUCT_DESC_EN" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SHORT_DESCR"/>
+      <keyMapping columnObjectName="INC_PROD_CAT" columnName="PRODUCT_DESC_EN"/>
+    </attribute>
+    <attribute id="PROD_CAT_DESC_EN" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SHORT_DESCR"/>
+      <keyMapping columnObjectName="INC_PROD_CAT" columnName="PROD_CAT_DESC_EN"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="499.5449077088584" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="SRC_CLN_PRODUCT" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92.00000000000003" y="536.9999976158142"/>
+      <rectangleSize height="30" width="262"/>
+    </shape>
+    <shape expanded="true" modelObjectName="SRC_CLN_PROD_TEXT_EN" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="404" y="536.9999976158142"/>
+      <rectangleSize height="30" width="262"/>
+    </shape>
+    <shape expanded="true" modelObjectName="SRC_CLN_PROD_CAT_TEXT_EN" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="503.8587447973488" y="376.9999988079071"/>
+      <rectangleSize height="30" width="262"/>
+    </shape>
+    <shape expanded="true" modelObjectName="INC_PROD_DESC" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="169.66666666666666" y="376.9999988079071"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="SRC_CLN_PRODUCT" modelObjectNameSpace="INC_PROD_DESC" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="201.73095703125"/>
+    </shape>
+    <shape modelObjectName="SRC_CLN_PROD_TEXT_EN" modelObjectNameSpace="INC_PROD_DESC" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="222.701171875"/>
+    </shape>
+    <shape expanded="true" modelObjectName="INC_PROD_CAT" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="499.5449077088583" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="INC_PROD_DESC" modelObjectNameSpace="INC_PROD_CAT" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="SRC_CLN_PROD_CAT_TEXT_EN" modelObjectNameSpace="INC_PROD_CAT" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

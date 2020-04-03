@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CLN_ADDRESSES" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="Cleanse CV for Addresses"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="ADDRESSES">
+    <resourceUri>ADDRESSES</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="SRC_ADDRESSES">
+    <viewAttributes>
+      <viewAttribute id="ADDRESS_ID"/>
+      <viewAttribute id="REGION"/>
+      <viewAttribute id="COUNTRY"/>
+      <viewAttribute id="CITY"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="ADDRESSES"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="SRC_ADDRESSES">
+  <attributes>
+    <attribute id="ADDRESS_ID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ADDRESS_ID"/>
+      <keyMapping columnObjectName="SRC_ADDRESSES" columnName="ADDRESS_ID"/>
+    </attribute>
+    <attribute id="REGION" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="REGION"/>
+      <keyMapping columnObjectName="SRC_ADDRESSES" columnName="REGION"/>
+    </attribute>
+    <attribute id="COUNTRY" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="COUNTRY"/>
+      <keyMapping columnObjectName="SRC_ADDRESSES" columnName="COUNTRY"/>
+    </attribute>
+    <attribute id="CITY" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CITY"/>
+      <keyMapping columnObjectName="SRC_ADDRESSES" columnName="CITY"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="SRC_ADDRESSES" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="184"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

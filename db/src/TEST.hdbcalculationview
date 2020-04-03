@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:DataFoundation="http://www.sap.com/ndb/BiModelDataFoundation.ecore" xmlns:Dimension="http://www.sap.com/ndb/BiModelDimension.ecore" id="TEST" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="TEST"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="CONNECTION_DETAILS">
+    <resourceUri>CONNECTION_DETAILS</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Aggregation_1">
+    <viewAttributes>
+      <viewAttribute id="COUNTRY_FROM"/>
+      <viewAttribute id="CITY_FROM"/>
+      <viewAttribute id="AIRPORT_FROM"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="CONNECTION_DETAILS"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Aggregation_1">
+  <attributes>
+    <attribute id="COUNTRY_FROM" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="COUNTRY_FROM"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="COUNTRY_FROM"/>
+    </attribute>
+    <attribute id="CITY_FROM" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CITY_FROM"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="CITY_FROM"/>
+    </attribute>
+    <attribute id="AIRPORT_FROM" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="AIRPORT_FROM"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="AIRPORT_FROM"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures>
+    <measure id="COUNT_1" order="4" aggregationType="sum" measureType="simple" calculatedMeasureType="counter" aggregatable="true" datatype="BIGINT" length="">
+      <exceptionAggregation>
+        <attribute attributeName="AIRPORT_FROM"/>
+      </exceptionAggregation>
+      <formula>1</formula>
+      </measure>
+  </calculatedMeasures>
+  <restrictedMeasures/>
+  <localDimensions>
+    <localDimension id="LEVEL_1">
+      <attributeRef xsi:type="DataFoundation:Attribute">COUNTRY_FROM</attributeRef>
+      <attributeRef xsi:type="DataFoundation:Attribute">CITY_FROM</attributeRef>
+      <attributeRef xsi:type="DataFoundation:Attribute">AIRPORT_FROM</attributeRef>
+      <hierarchies>
+        <hierarchy xsi:type="Dimension:LeveledHierarchy" id="LEVEL_1" aggregateAllNodes="true" orphanedNodesHandling="ROOT_NODES" rootNodeVisibility="ADD_ROOT_NODE" withRootNode="true" nodeStyle="LEVEL_NAME_ENFORCED" cacheEnabled="true" cycleHandling="BREAKUP" emptyValueIsNull="true">
+          <descriptions defaultDescription=""/>
+          <unassignedMemberProperties mode="FALSE"/>
+          <levels>
+            <level levelAttribute="COUNTRY_FROM" levelType="MDLEVEL_TYPE_REGULAR" order="1" orderAttribute="COUNTRY_FROM" sortDirection="ASC"/>
+            <level levelAttribute="CITY_FROM" levelType="MDLEVEL_TYPE_REGULAR" order="2" orderAttribute="CITY_FROM" sortDirection="ASC"/>
+            <level levelAttribute="AIRPORT_FROM" levelType="MDLEVEL_TYPE_REGULAR" order="3" orderAttribute="AIRPORT_FROM" sortDirection="ASC"/>
+          </levels>
+        </hierarchy>
+      </hierarchies>
+    </localDimension>
+  </localDimensions>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Aggregation_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-43" y="232"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CLN_PROD_CAT_TEXT_EN" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="English Product Categories"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="PRODUCT_CATEGORY_TEXT">
+    <resourceUri>PRODUCT_CATEGORY_TEXT</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="SRC_PROD_CAT_TEXT" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="PROD_CATEGORY_ID"/>
+      <viewAttribute id="LANGUAGE"/>
+      <viewAttribute id="SHORT_DESCR"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="PRODUCT_CATEGORY_TEXT"/>
+    <filter>&quot;LANGUAGE&quot;='EN'</filter>
+  </calculationView>
+</calculationViews>
+<logicalModel id="SRC_PROD_CAT_TEXT">
+  <attributes>
+    <attribute id="PROD_CATEGORY_ID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PROD_CATEGORY_ID"/>
+      <keyMapping columnObjectName="SRC_PROD_CAT_TEXT" columnName="PROD_CATEGORY_ID"/>
+    </attribute>
+    <attribute id="SHORT_DESCR" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SHORT_DESCR"/>
+      <keyMapping columnObjectName="SRC_PROD_CAT_TEXT" columnName="SHORT_DESCR"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="147.1668600701734" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="SRC_PROD_CAT_TEXT" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="91.99999999999997" y="236.9999988079071"/>
+      <rectangleSize height="30" width="263"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

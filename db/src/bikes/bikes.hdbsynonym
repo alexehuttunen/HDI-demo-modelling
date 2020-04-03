@@ -1,0 +1,65 @@
+{
+  "ADDRESSES": {
+    "target": {
+      "object": "bikesSourceData.ADDRESSES",
+      "schema": "DB_1",
+      "database": "HXE"
+    }
+  },
+  "BUSINESS_PARTNERS": {
+    "target": {
+      "object": "bikesSourceData.BUSINESS_PARTNERS",
+      "schema": "DB_1",
+      "database": "HXE"
+    }
+  },
+  "EMPLOYEES": {
+    "target": {
+      "object": "bikesSourceData.EMPLOYEES",
+      "schema": "DB_1",
+      "database": "HXE"
+    }
+  },
+  "PRODUCTS": {
+    "target": {
+      "object": "bikesSourceData.PRODUCTS",
+      "schema": "DB_1",
+      "database": "HXE"
+    }
+  },
+  "PRODUCT_CATEGORIES": {
+    "target": {
+      "object": "bikesSourceData.PRODUCT_CATEGORIES",
+      "schema": "DB_1",
+      "database": "HXE"
+    }
+  },
+  "PRODUCT_CATEGORY_TEXT": {
+    "target": {
+      "object": "bikesSourceData.PRODUCT_CATEGORY_TEXT",
+      "schema": "DB_1",
+      "database": "HXE"
+    }
+  },
+  "PRODUCT_TEXTS": {
+    "target": {
+      "object": "bikesSourceData.PRODUCT_TEXTS",
+      "schema": "DB_1",
+      "database": "HXE"
+    }
+  },
+  "SALES_ORDERS": {
+    "target": {
+      "object": "bikesSourceData.SALES_ORDERS",
+      "schema": "DB_1",
+      "database": "HXE"
+    }
+  },
+  "SALES_ORDER_ITEMS": {
+    "target": {
+      "object": "bikesSourceData.SALES_ORDER_ITEMS",
+      "schema": "DB_1",
+      "database": "HXE"
+    }
+  }
+}

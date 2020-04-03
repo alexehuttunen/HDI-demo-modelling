@@ -1,0 +1,32 @@
+{
+  "AIRLINE": {
+    "target": {
+      "object": "AIRLINE",
+      "schema": "FLIGHTS"
+    }
+  },
+  "AIRCRAFT": {
+    "target": {
+      "object": "AIRCRAFT",
+      "schema": "FLIGHTS"
+    }
+  },
+  "AIRPORT": {
+    "target": {
+      "object": "AIRPORT",
+      "schema": "FLIGHTS"
+    }
+  },
+  "CONNECTION_DETAILS": {
+    "target": {
+      "object": "CONNECTION_DETAILS",
+      "schema": "FLIGHTS"
+    }
+  },
+  "FLIGHT_TRANSACTIONS": {
+    "target": {
+      "object": "FLIGHT_TRANSACTIONS",
+      "schema": "FLIGHTS"
+    }
+  }
+}

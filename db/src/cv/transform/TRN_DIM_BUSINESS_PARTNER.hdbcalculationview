@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="TRN_DIM_BUSINESS_PARTNER" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="Combines Business Partner with Address"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="CLN_ADDRESSES">
+    <resourceUri>CLN_ADDRESSES</resourceUri>
+  </DataSource>
+  <DataSource id="CLN_BUSINESS_PARTNER">
+    <resourceUri>CLN_BUSINESS_PARTNER</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="SRC_CLN_ADDRESSES">
+    <viewAttributes>
+      <viewAttribute id="ADDRESS_ID"/>
+      <viewAttribute id="REGION"/>
+      <viewAttribute id="COUNTRY"/>
+      <viewAttribute id="CITY"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="CLN_ADDRESSES"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="SRC_CLN_BUSINESS_PARTNER">
+    <viewAttributes>
+      <viewAttribute id="PARTNER_ID"/>
+      <viewAttribute id="ADDRESS_ID"/>
+      <viewAttribute id="COMPANY_NAME"/>
+      <viewAttribute id="LEGAL_FORM"/>
+      <viewAttribute id="PARTNER_ROLE"/>
+      <viewAttribute id="BP_CURRENCY"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="CLN_BUSINESS_PARTNER"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_1" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="PARTNER_ID"/>
+      <viewAttribute id="COMPANY_NAME"/>
+      <viewAttribute id="LEGAL_FORM"/>
+      <viewAttribute id="PARTNER_ROLE"/>
+      <viewAttribute id="BP_CURRENCY"/>
+      <viewAttribute id="BP_REGION"/>
+      <viewAttribute id="BP_COUNTRY"/>
+      <viewAttribute id="BP_CITY"/>
+      <viewAttribute hidden="true" id="JOIN$ADDRESS_ID$ADDRESS_ID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="SRC_CLN_BUSINESS_PARTNER">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PARTNER_ID" source="PARTNER_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="COMPANY_NAME" source="COMPANY_NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LEGAL_FORM" source="LEGAL_FORM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PARTNER_ROLE" source="PARTNER_ROLE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BP_CURRENCY" source="BP_CURRENCY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ADDRESS_ID$ADDRESS_ID" source="ADDRESS_ID"/>
+    </input>
+    <input node="SRC_CLN_ADDRESSES">
+      <mapping xsi:type="Calculation:AttributeMapping" target="BP_REGION" source="REGION"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BP_COUNTRY" source="COUNTRY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BP_CITY" source="CITY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ADDRESS_ID$ADDRESS_ID" source="ADDRESS_ID"/>
+    </input>
+    <joinAttribute name="JOIN$ADDRESS_ID$ADDRESS_ID"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="PARTNER_ID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PARTNER_ID"/>
+      <keyMapping columnObjectName="Join_1" columnName="PARTNER_ID"/>
+    </attribute>
+    <attribute id="COMPANY_NAME" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="COMPANY_NAME"/>
+      <keyMapping columnObjectName="Join_1" columnName="COMPANY_NAME"/>
+    </attribute>
+    <attribute id="LEGAL_FORM" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LEGAL_FORM"/>
+      <keyMapping columnObjectName="Join_1" columnName="LEGAL_FORM"/>
+    </attribute>
+    <attribute id="PARTNER_ROLE" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PARTNER_ROLE"/>
+      <keyMapping columnObjectName="Join_1" columnName="PARTNER_ROLE"/>
+    </attribute>
+    <attribute id="BP_CURRENCY" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CURRENCY"/>
+      <keyMapping columnObjectName="Join_1" columnName="BP_CURRENCY"/>
+    </attribute>
+    <attribute id="BP_REGION" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="REGION"/>
+      <keyMapping columnObjectName="Join_1" columnName="BP_REGION"/>
+    </attribute>
+    <attribute id="BP_COUNTRY" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="COUNTRY"/>
+      <keyMapping columnObjectName="Join_1" columnName="BP_COUNTRY"/>
+    </attribute>
+    <attribute id="BP_CITY" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CITY"/>
+      <keyMapping columnObjectName="Join_1" columnName="BP_CITY"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="SRC_CLN_ADDRESSES" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="267" y="360"/>
+      <rectangleSize height="30" width="198"/>
+    </shape>
+    <shape expanded="true" modelObjectName="SRC_CLN_BUSINESS_PARTNER" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-140" y="300"/>
+      <rectangleSize height="30" width="240"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="168"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="SRC_CLN_BUSINESS_PARTNER" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="252.478515625"/>
+    </shape>
+    <shape modelObjectName="SRC_CLN_ADDRESSES" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="202.029296875"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

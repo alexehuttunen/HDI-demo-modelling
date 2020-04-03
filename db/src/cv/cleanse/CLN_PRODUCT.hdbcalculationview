@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CLN_PRODUCT" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="Cleanse Product Source Data"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="PRODUCTS">
+    <resourceUri>PRODUCTS</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="SRC_PRODUCT">
+    <viewAttributes>
+      <viewAttribute id="PRODUCT_ID"/>
+      <viewAttribute id="TYPE_CODE"/>
+      <viewAttribute id="PROD_CATEGORY_ID"/>
+      <viewAttribute id="QUANTITY_UNIT"/>
+      <viewAttribute id="CURRENCY"/>
+      <viewAttribute id="PRICE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="PRODUCTS"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="SRC_PRODUCT">
+  <attributes>
+    <attribute id="PRODUCT_ID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PRODUCT_ID"/>
+      <keyMapping columnObjectName="SRC_PRODUCT" columnName="PRODUCT_ID"/>
+    </attribute>
+    <attribute id="TYPE_CODE" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TYPE_CODE"/>
+      <keyMapping columnObjectName="SRC_PRODUCT" columnName="TYPE_CODE"/>
+    </attribute>
+    <attribute id="PROD_CATEGORY_ID" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PROD_CATEGORY_ID"/>
+      <keyMapping columnObjectName="SRC_PRODUCT" columnName="PROD_CATEGORY_ID"/>
+    </attribute>
+    <attribute id="QUANTITY_UNIT" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="QUANTITY_UNIT"/>
+      <keyMapping columnObjectName="SRC_PRODUCT" columnName="QUANTITY_UNIT"/>
+    </attribute>
+    <attribute id="CURRENCY" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CURRENCY"/>
+      <keyMapping columnObjectName="SRC_PRODUCT" columnName="CURRENCY"/>
+    </attribute>
+    <attribute id="PRICE" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PRICE"/>
+      <keyMapping columnObjectName="SRC_PRODUCT" columnName="PRICE"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="92" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="SRC_PRODUCT" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

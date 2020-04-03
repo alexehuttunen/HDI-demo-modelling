@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CLN_SALES_ORDER_ITEMS" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="Cleanse calculation view for sales order items"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="SALES_ORDER_ITEMS">
+    <resourceUri>SALES_ORDER_ITEMS</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="SRC_SALES_ORDER_ITEMS">
+    <viewAttributes>
+      <viewAttribute id="SALES_ORDER_ID"/>
+      <viewAttribute id="SALES_ORDER_ITEM"/>
+      <viewAttribute id="PRODUCT_ID"/>
+      <viewAttribute id="ITM_CURRENCY"/>
+      <viewAttribute id="ITM_GROSS_AMOUNT"/>
+      <viewAttribute id="ITM_NET_AMOUNT"/>
+      <viewAttribute id="ITM_TAX_AMOUNT"/>
+      <viewAttribute id="QUANTITY"/>
+      <viewAttribute id="QUANTITY_UNIT"/>
+      <viewAttribute id="DELIVERY_DATE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="SALES_ORDER_ITEMS">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ITM_CURRENCY" source="CURRENCY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ITM_GROSS_AMOUNT" source="GROSS_AMOUNT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ITM_NET_AMOUNT" source="NET_AMOUNT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ITM_TAX_AMOUNT" source="TAX_AMOUNT"/>
+    </input>
+  </calculationView>
+</calculationViews>
+<logicalModel id="SRC_SALES_ORDER_ITEMS">
+  <attributes>
+    <attribute id="SALES_ORDER_ID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SALES_ORDER_ID"/>
+      <keyMapping columnObjectName="SRC_SALES_ORDER_ITEMS" columnName="SALES_ORDER_ID"/>
+    </attribute>
+    <attribute id="SALES_ORDER_ITEM" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SALES_ORDER_ITEM"/>
+      <keyMapping columnObjectName="SRC_SALES_ORDER_ITEMS" columnName="SALES_ORDER_ITEM"/>
+    </attribute>
+    <attribute id="PRODUCT_ID" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PRODUCT_ID"/>
+      <keyMapping columnObjectName="SRC_SALES_ORDER_ITEMS" columnName="PRODUCT_ID"/>
+    </attribute>
+    <attribute id="ITM_CURRENCY" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CURRENCY"/>
+      <keyMapping columnObjectName="SRC_SALES_ORDER_ITEMS" columnName="ITM_CURRENCY"/>
+    </attribute>
+    <attribute id="ITM_GROSS_AMOUNT" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="GROSS_AMOUNT"/>
+      <keyMapping columnObjectName="SRC_SALES_ORDER_ITEMS" columnName="ITM_GROSS_AMOUNT"/>
+    </attribute>
+    <attribute id="ITM_NET_AMOUNT" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NET_AMOUNT"/>
+      <keyMapping columnObjectName="SRC_SALES_ORDER_ITEMS" columnName="ITM_NET_AMOUNT"/>
+    </attribute>
+    <attribute id="ITM_TAX_AMOUNT" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TAX_AMOUNT"/>
+      <keyMapping columnObjectName="SRC_SALES_ORDER_ITEMS" columnName="ITM_TAX_AMOUNT"/>
+    </attribute>
+    <attribute id="QUANTITY" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="QUANTITY"/>
+      <keyMapping columnObjectName="SRC_SALES_ORDER_ITEMS" columnName="QUANTITY"/>
+    </attribute>
+    <attribute id="QUANTITY_UNIT" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="QUANTITY_UNIT"/>
+      <keyMapping columnObjectName="SRC_SALES_ORDER_ITEMS" columnName="QUANTITY_UNIT"/>
+    </attribute>
+    <attribute id="DELIVERY_DATE" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DELIVERY_DATE"/>
+      <keyMapping columnObjectName="SRC_SALES_ORDER_ITEMS" columnName="DELIVERY_DATE"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="SRC_SALES_ORDER_ITEMS" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="70" y="230"/>
+      <rectangleSize height="30" width="220"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
